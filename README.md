@@ -57,7 +57,7 @@ Finally, in a form you can replace FileField with AsyncFileField.
         function set_up(){
             $this->add_field("image", new AsyncFileField([
               "label" => "Image",
-			        "allowed_mime_types" => ["image/jpg","image/png"],
+              "allowed_mime_types" => ["image/jpg","image/png"],
             ]));
         }
     }
