@@ -20,6 +20,8 @@
                 "atk14/core": "dev-master"
         },
         "autoload": {
-                "classmap": ["src/app/"]
+                "classmap": [
+                  "src/lib"
+                 ]
         }
 }
