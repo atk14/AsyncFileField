@@ -67,11 +67,17 @@ Chunked file upload
 
 Files are being uploaded to the server chunked into 1MB chunks. The maximum total size of a uploaded file can be defined in constant TEMPORARY_FILE_UPLOADS_MAX_FILESIZE. By default it is 512MB.
 
+Stale files removal
+-------------------
+
+Stale files are being deleted automatically after the period specified in constant TEMPORARY_FILE_UPLOADS_MAX_AGE. By default, the period is 2 hours.
+
 Configuration
 -------------
 
 In config/settings.php, these constants can be defined:
 
+    define("TEMPORARY_FILE_UPLOADS_ENABLED",true); // Temporary file uploading can be disabled here
     define("TEMPORARY_FILE_UPLOADS_DIRECTORY",__DIR__ . "/../tmp/temporary_file_uploads/");
     define("TEMPORARY_FILE_UPLOADS_MAX_FILESIZE",512 * 1024 * 1024); // 512MB
     define("TEMPORARY_FILE_UPLOADS_MAX_AGE", 2 * 60 * 60); // 2 hours

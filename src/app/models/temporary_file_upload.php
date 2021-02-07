@@ -1,4 +1,5 @@
 <?php
+definedef("TEMPORARY_FILE_UPLOADS_ENABLED",true);
 definedef("TEMPORARY_FILE_UPLOADS_DIRECTORY",TEMP . "/temporary_file_uploads/");
 definedef("TEMPORARY_FILE_UPLOADS_MAX_FILESIZE",512 * 1024 * 1024); // 512MB
 definedef("TEMPORARY_FILE_UPLOADS_MAX_AGE", 2 * 60 * 60); // 2 hours
