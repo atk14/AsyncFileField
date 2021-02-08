@@ -42,13 +42,26 @@ Include required scripts to your gulpfile.
            "public/scripts/application.js"
     ];
 
-In public/scripts/application.js (public/admin/scripts/application.js, ...), in a spcific action you can initialize the asynchronous file upload this way:
+In public/scripts/application.js (or public/admin/scripts/application.js, ...), globally or for a specific action you can initialize the asynchronous file upload this way:
 
-    articles: {
-            create_new: function() {
-                    UTILS.async_file_upload.init();
-            }
+    // globally
+    common: {
+      init: function() {
+        // ...
+        UTILS.async_file_upload.init();
+      }
     }
+
+    // specific action
+    articles: {
+      create_new: function() {
+        UTILS.async_file_upload.init();
+      }
+    }
+
+Include styles for AsyncFileField in public/styles/application.scss (or public/admin/styles/application.scss, ...):
+
+    @import "shared/async_file_input";
 
 Finally, in a form you can replace FileField with AsyncFileField.
 
