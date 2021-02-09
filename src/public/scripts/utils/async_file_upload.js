@@ -1,3 +1,6 @@
+// This file is part of package atk14/async-file-field
+// See https://packagist.org/packages/atk14/async-file-field or https://github.com/atk14/AsyncFileField
+
 window.UTILS = window.UTILS || { };
 
 window.UTILS.async_file_upload = { };
