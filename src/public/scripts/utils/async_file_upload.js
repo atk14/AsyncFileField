@@ -88,4 +88,4 @@ window.UTILS.async_file_upload.init = function() {
 
 	$( ".js--async-file input[type=file]" ).fileupload( fileuploadOptions );
 	$( ".js--async-file .js--remove" ).on( "click", removeButtonHandler );
-}
+};
