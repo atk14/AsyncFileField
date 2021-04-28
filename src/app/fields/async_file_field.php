@@ -10,7 +10,7 @@ class AsyncFileField extends FileField {
 
 		$this->update_messages(array(
 			"temporary_file_not_found" => _("The file has been already deleted on the server, please upload it again"),
-			"temporary_file_not_fully_uploaded" => _("The file was now fully upload, please upload it again"),
+			"temporary_file_not_fully_uploaded" => _("The file was not fully uploaded, please upload it again"),
 		));
 	}
 
