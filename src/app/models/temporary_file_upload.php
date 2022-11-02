@@ -8,6 +8,12 @@ class TemporaryFileUpload extends ApplicationModel {
 
 	var $_Name = "file";
 
+	function __construct(){
+		parent::__construct("temporary_file_uploads", array(
+			"sequence_name" => "seq_temporary_file_uploads",
+		));
+	}
+
 	static function CreateNewRecordByHttpUploadedFile($file,$options = array()){
 		$now = now();
 		$values = array(
