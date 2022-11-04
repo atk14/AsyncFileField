@@ -11,14 +11,15 @@ class AsyncFileInput extends FileInput {
 			</div>
 		';
 
+		$trash_icon = '<span class="far fa-trash-alt"></span>';
+		if(!defined("USING_FONTAWESOME") || !constant("USING_FONTAWESOME")){
+			$trash_icon = '<span>&times;</span>';
+		}
+
 		$template_done = '
-			<div class="async-file-input__result done"><span class="fileicon fileicon-%fileext% fileicon-color"></span> <span class="file-text">%filename% <span class="text-muted">%filesize_localized%</span></span> <button type="button" class="btn btn-danger btn-sm js--remove" data-destroy_url="%destroy_url%"><i class="far fa-trash-alt"></i></button>
+			<div class="async-file-input__result done"><span class="fileicon fileicon-%fileext% fileicon-color"></span> <span class="file-text">%filename% <span class="text-muted">%filesize_localized%</span></span> <button type="button" class="btn btn-danger btn-sm js--remove" data-destroy_url="%destroy_url%" title="'.h(_("Remove file")).'">'.$trash_icon.'</button>
 			<input type="hidden" name="%name%" value="%token%"></div>
 		';
-		/*$template_done = '
-			<span class="fileicon fileicon-%fileext% fileicon-color"></span> %filename% <span class="text-muted">%filesize_localized%</span> <button type="button" class="btn btn-danger brn-sm js--remove" data-destroy_url="%destroy_url%"><i class="far fa-trash-alt"></i></button>
-			<input type="hidden" name="%name%" value="%token%">
-		';*/
 
 		$template_error = '<div class="async-file-input__result error"><i class="fas fa-exclamation-circle"></i><span class="file-text">%error_message%</span> <button type="button" class="btn btn-light btn-sm js--confirm">OK</button></div>';
 
