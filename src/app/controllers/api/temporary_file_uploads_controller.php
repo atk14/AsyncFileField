@@ -4,7 +4,7 @@ class TemporaryFileUploadsController extends ApiController {
 	/**
 	 * ### File upload
 	 *
-	 * A file can be uploaded to this endpoint. Is supports chunked upload.
+	 * A file can be uploaded to this endpoint. Supports upload files in chunks.
 	 *
 	 * #### Response
 	 *
