@@ -17,7 +17,12 @@ Installation
     ln -s ../../vendor/atk14/async-file-field/src/app/fields/async_file_field.php app/fields/
     ln -s ../../vendor/atk14/async-file-field/src/app/widgets/async_file_input.php app/widgets/
     ln -s ../../../vendor/atk14/async-file-field/src/public/scripts/utils/async_file_upload.js public/scripts/utils/
+
+    # for Bootstrap 4
     ln -s ../../../vendor/atk14/async-file-field/src/public/styles/shared/_async_file_input.scss public/styles/shared/
+
+    # for Bootstrap 3
+    ln -s ../../../vendor/atk14/async-file-field/src/public/styles/shared/async_file_input.less public/styles/shared/
 
 Copy migration to a proper filename into your project and perform the migration script:
 
@@ -59,9 +64,13 @@ In public/scripts/application.js (or public/admin/scripts/application.js, ...), 
       }
     }
 
-Include styles for AsyncFileField in public/styles/application.scss (or public/admin/styles/application.scss, ...):
+For Bootstrap 4, include styles for AsyncFileField in public/styles/application.scss (or public/admin/styles/application.scss, ...):
 
     @import "shared/async_file_input";
+
+For Bootstrap 3, include styles for AsyncFileField in public/styles/application.less (or public/admin/styles/application.less, ...):
+
+    @import url( "./shared/async_file_input.less" );
 
 Finally, in a form you can replace FileField with AsyncFileField.
 
