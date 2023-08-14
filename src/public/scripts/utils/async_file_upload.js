@@ -46,7 +46,9 @@ window.UTILS.async_file_upload.init = function() {
 			var template = $wrap.data( "template_done" );
 			template = template
 				.replace( "%filename%", escapeHtml( data.result.filename ) )
-				.replace( "%fileext%", escapeHtml( data.result.filename.split( "." ).pop().toLowerCase() ) )
+				.replace( "%fileext%", escapeHtml(
+					data.result.filename.split( "." ).pop().toLowerCase()
+				) )
 				.replace( "%filesize_localized%", escapeHtml( data.result.filesize_localized ) )
 				.replace( "%token%", escapeHtml( data.result.token ) )
 				.replace( "%name%", escapeHtml( $wrap.data( "name" ) ) )
@@ -59,7 +61,10 @@ window.UTILS.async_file_upload.init = function() {
 		fail: function( e, data ) {
 			var $wrap = this.$wrap;
 			var errMsg = "Error occurred";
-			if( data._response && data._response.jqXHR && data._response.jqXHR.responseJSON && data._response.jqXHR.responseJSON[ 0 ] ) {
+			if (
+				data._response && data._response.jqXHR &&
+				data._response.jqXHR.responseJSON && data._response.jqXHR.responseJSON[ 0 ]
+			) {
 				errMsg = data._response.jqXHR.responseJSON[ 0 ];
 			}
 			var template = $wrap.data( "template_error" );
@@ -76,7 +81,7 @@ window.UTILS.async_file_upload.init = function() {
 		var $wrap = $button.parents( ".js--async-file" );
 		$.ajax( {
 			url: $button.data( "destroy_url" ),
-			method: "POST",
+			method: "POST"
 		} );
 		$wrap.html( $wrap.data( "input" ) );
 		$wrap.find( "input[type=file]" ).fileupload( fileuploadOptions );
