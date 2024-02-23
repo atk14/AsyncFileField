@@ -16,30 +16,15 @@ Installation
     ln -s ../../vendor/atk14/async-file-field/src/app/models/temporary_file_upload.php app/models/
     ln -s ../../vendor/atk14/async-file-field/src/app/fields/async_file_field.php app/fields/
     ln -s ../../vendor/atk14/async-file-field/src/app/widgets/async_file_input.php app/widgets/
-    ln -s ../../../vendor/atk14/async-file-field/src/public/scripts/utils/async_file_upload.js public/scripts/utils/
-
-    # for Bootstrap 4
-    ln -s ../../../vendor/atk14/async-file-field/src/public/styles/shared/_async_file_input.scss public/styles/shared/
-
-    # for Bootstrap 3
-    ln -s ../../../vendor/atk14/async-file-field/src/public/styles/shared/async_file_input.less public/styles/shared/
+    ln -s ../../../vendor/atk14/async-file-field/src/public/scripts/utils/async_file_upload.v2.js public/scripts/utils/async_file_upload.js
+    ln -s ../../../vendor/atk14/async-file-field/src/public/styles/shared/_async_file_input.v2.scss public/styles/shared/_async_file_input.scss
 
 Copy migration to a proper filename into your project and perform the migration script:
 
     cp vendor/atk14/async-file-field/src/db/migrations/0019_temporary_file_uploads.sql db/migrations/
     ./scripts/migrate
 
-Npm packages blueimp-file-upload and jquery-ui-bundle need to be installed. If you don't have them, run:
-
-    npm install --save jquery-ui-bundle blueimp-file-upload
-
-Include required scripts to your gulpfile.
-
-    var vendorScripts = [
-          // ...,
-          "node_modules/jquery-ui-bundle/jquery-ui.js",
-          "node_modules/blueimp-file-upload/js/jquery.fileupload.js"
-    ];
+Include async_file_upload.js to your gulpfile.
 
     var applicationScripts = [
            // ...,
@@ -64,13 +49,9 @@ In public/scripts/application.js (or public/admin/scripts/application.js, ...), 
       }
     }
 
-For Bootstrap 4, include styles for AsyncFileField in public/styles/application.scss (or public/admin/styles/application.scss, ...):
+Include styles for AsyncFileField in public/styles/application.scss (or public/admin/styles/application.scss, ...):
 
     @import "shared/async_file_input";
-
-For Bootstrap 3, include styles for AsyncFileField in public/styles/application.less (or public/admin/styles/application.less, ...):
-
-    @import url( "./shared/async_file_input.less" );
 
 Finally, in a form you can replace FileField with AsyncFileField.
 
@@ -103,6 +84,31 @@ In config/settings.php, these constants can be defined:
     define("TEMPORARY_FILE_UPLOADS_DIRECTORY",__DIR__ . "/../tmp/temporary_file_uploads/");
     define("TEMPORARY_FILE_UPLOADS_MAX_FILESIZE",512 * 1024 * 1024); // 512MB
     define("TEMPORARY_FILE_UPLOADS_MAX_AGE", 2 * 60 * 60); // 2 hours
+
+Legacy usage
+------------
+
+If you are using Bootstrap 3, you can find a less file in the package. Symlink it into your project.
+
+    ln -s ../../../vendor/atk14/async-file-field/src/public/styles/shared/async_file_input.less public/styles/shared/
+
+And use the file in your application.less.
+
+    @import url( "./shared/async_file_input.less" );
+
+If you symlink async_file_upload.js and not async_file_upload.v2.js, npm packages blueimp-file-upload and jquery-ui-bundle are required.
+
+These packages need to be installed using npm.
+
+    npm install --save jquery-ui-bundle blueimp-file-upload
+
+Then add the files to your gulp file.
+
+    var vendorScripts = [
+         // ...,
+         "node_modules/jquery-ui-bundle/jquery-ui.js",
+         "node_modules/blueimp-file-upload/js/jquery.fileupload.js"
+    ];
 
 License
 -------
