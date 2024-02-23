@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to atk14/sync-file-field will be documented in this file.
 
+## [1.0.4] - 2024-02-23
+
+* Added async_file_upload.v2.js without jQuery UI and blueimp-file-upload dependency
+
 ## [1.0.3] - 2022-11-27
 
 * 2b72a0e - Added styles for Bootstrap 3
