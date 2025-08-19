@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to atk14/sync-file-field will be documented in this file.
 
+## [1.0.5] - 2025-08-19
+
+* 17ab42d - When re-upload is required, the widget will render an empty input field
+
 ## [1.0.4] - 2024-02-23
 
 * Added async_file_upload.v2.js without jQuery UI and blueimp-file-upload dependency
