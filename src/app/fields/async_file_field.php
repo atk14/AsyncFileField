@@ -9,8 +9,8 @@ class AsyncFileField extends FileField {
 		parent::__construct($options);
 
 		$this->update_messages(array(
-			"temporary_file_not_found" => _("The file has been already deleted on the server, please upload it again"),
-			"temporary_file_not_fully_uploaded" => _("The file was not fully uploaded, please upload it again"),
+			"temporary_file_not_found" => _("The file has been already deleted on the server, please upload it again!"),
+			"temporary_file_not_fully_uploaded" => _("The file was not fully uploaded, please upload it again!"),
 		));
 	}
 
@@ -18,15 +18,18 @@ class AsyncFileField extends FileField {
 		if(is_string($value) && !is_numeric($value)){
 			$value = TemporaryFileUpload::GetInstanceByToken($value);
 			if(!$value){
+				$this->widget->reupload_required = true;
 				return array($this->messages["temporary_file_not_found"],null);
 			}
 		}
 		if(is_a($value,"TemporaryFileUpload")){
 			$file = $value;
 			if(!file_exists($file->getFullPath())){
+				$this->widget->reupload_required = true;
 				return array($this->messages["temporary_file_not_found"],null);
 			}
 			if(!$file->fullyUploaded()){
+				$this->widget->reupload_required = true;
 				return array($this->messages["temporary_file_not_fully_uploaded"],null);
 			}
 			$value = new TemporaryFileUpload_as_HTTPUploadedFile($file);

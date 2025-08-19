@@ -1,6 +1,8 @@
 <?php
 class AsyncFileInput extends FileInput {
 
+	var $reupload_required = false; // may be set by the AsyncFileField in clean() method
+
 	function render($name, $value, $options=array()){
 		$input = parent::render($name, $value, $options); // <input type="file' ...>
 
@@ -26,8 +28,11 @@ class AsyncFileInput extends FileInput {
 		$default = $input;
 
 		if(
-			(is_a($value,"TemporaryFileUpload") && ($file = $value)) ||
-			(is_string($value) && ($file = TemporaryFileUpload::GetInstanceByToken($value)))
+			!$this->reupload_required &&
+			(
+				(is_a($value,"TemporaryFileUpload") && ($file = $value)) ||
+				(is_string($value) && ($file = TemporaryFileUpload::GetInstanceByToken($value)))
+			)
 		){
 			Atk14Require::Helper("modifier.format_bytes");
 			$default = strtr($template_done,array(
