@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to atk14/sync-file-field will be documented in this file.
 
+## [1.0.6] - 2026-05-31
+
+* 9644085 - Assertion messages added
+
 ## [1.0.5] - 2025-08-19
 
 * 17ab42d - When re-upload is required, the widget will render an empty input field
