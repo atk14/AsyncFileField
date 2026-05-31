@@ -66,9 +66,9 @@ class TemporaryFileUpload extends ApplicationModel {
 	}
 
 	function appendChunk($file){
-		myAssert($this->chunkedUpload());
-		myAssert(!$this->fullyUploaded());
-		myAssert($this->getFilesize()>=($this->getBytesUploaded() + $file->getFileSize()));
+		myAssert($this->chunkedUpload(),"expecting a chunked upload");
+		myAssert(!$this->fullyUploaded(),"the file must be fully uploaded");
+		myAssert($this->getFilesize()>=($this->getBytesUploaded() + $file->getFileSize()),"file size mismatch");
 
 		$full_path = $this->getFullPath();
 		myAssert(file_exists($full_path));
