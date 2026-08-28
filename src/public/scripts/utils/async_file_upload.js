@@ -60,12 +60,15 @@ window.UTILS.async_file_upload.init = function() {
 		},
 		fail: function( e, data ) {
 			var $wrap = this.$wrap;
+			var jqXHR = data._response && data._response.jqXHR;
 			var errMsg = "Error occurred";
-			if (
-				data._response && data._response.jqXHR &&
-				data._response.jqXHR.responseJSON && data._response.jqXHR.responseJSON[ 0 ]
-			) {
-				errMsg = data._response.jqXHR.responseJSON[ 0 ];
+			if( jqXHR && jqXHR.responseJSON && jqXHR.responseJSON[ 0 ] ) {
+				errMsg = jqXHR.responseJSON[ 0 ];
+			}
+			if( jqXHR ) {
+				// Append HTTP status so the cause can be diagnosed from a screenshot alone
+				// (e.g. 0 = network/CORS failure, 413 = rejected by a proxy, 500 = server crash)
+				errMsg += " (HTTP " + jqXHR.status + ( jqXHR.statusText ? " " + jqXHR.statusText : "" ) + ")";
 			}
 			var template = $wrap.data( "template_error" );
 			template = template
