@@ -192,14 +192,14 @@ window.UTILS.async_file_upload.Uploader = class {
   onUploadError( xhr ) {
     let template = this.element.dataset.template_error;
     let response = xhr.response;
-    let errMsg = "Error occurred";
-
-    // Append HTTP status so the cause can be diagnosed from a screenshot alone
-    // (e.g. 0 = network/CORS failure, 413 = rejected by a proxy, 500 = server crash)
-    errMsg += " (HTTP " + xhr.status + ( xhr.statusText ? " " + xhr.statusText : "" ) + "). Please try it again later.";
+    let errMsg;
 
     if( response && response[0] ) {
       errMsg = response[ 0 ];
+    } else {
+      // Append HTTP status so the cause can be diagnosed from a screenshot alone
+      // (e.g. 0 = network/CORS failure, 413 = rejected by a proxy, 500 = server crash)
+      errMsg = "Error occurred (HTTP " + xhr.status + ( xhr.statusText ? " " + xhr.statusText : "" ) + "). Please try it again later.";
     }
 
     template = template
