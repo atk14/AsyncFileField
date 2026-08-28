@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to atk14/sync-file-field will be documented in this file.
 
+## [1.0.7] - 2026-08-28
+
+* Better error message
+
 ## [1.0.6] - 2026-05-31
 
 * 9644085 - Assertion messages added
