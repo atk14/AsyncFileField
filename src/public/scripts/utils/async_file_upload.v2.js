@@ -169,7 +169,7 @@ window.UTILS.async_file_upload.Uploader = class {
         this.onUploadSuccess( xhr.response );
       }
     } else if( xhr.readyState === 4 ) {
-      this.onUploadError( xhr.response );
+      this.onUploadError( xhr );
     }
   }
 
@@ -189,13 +189,19 @@ window.UTILS.async_file_upload.Uploader = class {
   }
 
   // Display error message
-  onUploadError( response ) {
+  onUploadError( xhr ) {
     let template = this.element.dataset.template_error;
-    let errMsg = "Error occurred";
+    let response = xhr.response;
+    let errMsg;
 
     if( response && response[0] ) {
       errMsg = response[ 0 ];
+    } else {
+      // Append HTTP status so the cause can be diagnosed from a screenshot alone
+      // (e.g. 0 = network/CORS failure, 413 = rejected by a proxy, 500 = server crash)
+      errMsg = "Error occurred (HTTP " + xhr.status + ( xhr.statusText ? " " + xhr.statusText : "" ) + "). Please try it again later.";
     }
+
     template = template
       .replace( "%error_message%", this.escapeHtml( errMsg ) );
 
