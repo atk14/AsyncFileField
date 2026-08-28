@@ -194,15 +194,12 @@ window.UTILS.async_file_upload.Uploader = class {
     let response = xhr.response;
     let errMsg = "Error occurred";
 
-    if( response && response[0] ) {
-      errMsg = response[ 0 ];
-    }
     // Append HTTP status so the cause can be diagnosed from a screenshot alone
     // (e.g. 0 = network/CORS failure, 413 = rejected by a proxy, 500 = server crash)
-    errMsg += " (HTTP " + xhr.status + ( xhr.statusText ? " " + xhr.statusText : "" ) + ")";
-    if( xhr.status === 0 ) {
-      // Connection was lost / never reached the server - retrying may well succeed
-      errMsg += " Please try it again later.";
+    errMsg += " (HTTP " + xhr.status + ( xhr.statusText ? " " + xhr.statusText : "" ) + "). Please try it again later.";
+
+    if( response && response[0] ) {
+      errMsg = response[ 0 ];
     }
 
     template = template
