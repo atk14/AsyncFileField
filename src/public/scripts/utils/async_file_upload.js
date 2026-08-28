@@ -69,6 +69,10 @@ window.UTILS.async_file_upload.init = function() {
 				// Append HTTP status so the cause can be diagnosed from a screenshot alone
 				// (e.g. 0 = network/CORS failure, 413 = rejected by a proxy, 500 = server crash)
 				errMsg += " (HTTP " + jqXHR.status + ( jqXHR.statusText ? " " + jqXHR.statusText : "" ) + ")";
+				if( jqXHR.status === 0 ) {
+					// Connection was lost / never reached the server - retrying may well succeed
+					errMsg += " Please try it again later.";
+				}
 			}
 			var template = $wrap.data( "template_error" );
 			template = template

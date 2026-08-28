@@ -200,6 +200,10 @@ window.UTILS.async_file_upload.Uploader = class {
     // Append HTTP status so the cause can be diagnosed from a screenshot alone
     // (e.g. 0 = network/CORS failure, 413 = rejected by a proxy, 500 = server crash)
     errMsg += " (HTTP " + xhr.status + ( xhr.statusText ? " " + xhr.statusText : "" ) + ")";
+    if( xhr.status === 0 ) {
+      // Connection was lost / never reached the server - retrying may well succeed
+      errMsg += " Please try it again later.";
+    }
 
     template = template
       .replace( "%error_message%", this.escapeHtml( errMsg ) );
